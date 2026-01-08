@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Meet the Rudhara Innovation team - A talented group of designers, developers, and innovators">
+  <title>Our Team - Rudhara Innovation</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    .navbar {
+      position: sticky;
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--spacing-2xl);
+        margin-top: var(--spacing-2xl);
+      }
+      padding: var(--spacing-3xl) var(--spacing-lg);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(76, 175, 80, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    
+    .page-hero h1 {
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #1a1a1a 0%, #4CAF50 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      z-index: 1;
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .page-hero p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    
+    section {
+      padding: var(--spacing-3xl) var(--spacing-lg);
+    }
+    
+    section h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: var(--spacing-xl);
+      font-weight: 800;
+      text-align: center;
+    }
+    
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--spacing-2xl);
+      margin-top: var(--spacing-2xl);
+    }
+    
+    .team-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .team-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .team-image-wrapper {
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .team-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    
+    .team-card:hover .team-image-wrapper img {
+      transform: scale(1.05);
+    }
+    
+    .team-info {
+      padding: var(--spacing-2xl);
+      text-align: center;
+    }
+    
+    .team-info h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+    }
+    
+    .team-role {
+      font-size: 0.95rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #4CAF50, #1B5E20);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .team-bio {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .team-socials {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-md);
+      border-top: 1px solid #e0e0e0;
+      padding-top: var(--spacing-lg);
+    }
+    
+    .team-social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #f0f0f0;
+      color: #4CAF50;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+    
+    .team-social-link:hover {
+      background: #4CAF50;
+      color: white;
+      transform: translateY(-3px);
+    }
+    
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .team-section-intro {
+      text-align: center;
+      margin-bottom: var(--spacing-3xl);
+    }
+    
+    .team-section-intro p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    @media (max-width: 768px) {
+      .team-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--spacing-lg);
+      }
+      
+      .team-image-wrapper {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body class="light-mode">
+  <!-- ============== NAVBAR ============== -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-logo">
+        <img src="logo.png" alt="Rudhara Logo" style="width: 80px; height: 80px;" onerror="this.style.display='none'">
+       
+      </div>
+      
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="portfolio.html" class="nav-link">Work</a></li>
+        <li><a href="team.html" class="nav-link active">Team</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      
+      <div class="mode-switcher">
+        
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============== PAGE HERO ============== -->
+  <section class="team-section-intro reveal page-hero" style="position: relative; overflow: hidden; padding: var(--spacing-4xl) var(--spacing-lg); text-align: center;">
+    <div class="container">
+      <h1>Meet Our Team</h1>
+      <p>Talented visionaries, designers, and developers working together to create extraordinary digital experiences</p>
+    </div>
+</div>
+</div>
+</section>
+
+
+  
+
+      <div class="team-grid">
+        <!-- Team Member 1: CEO -->
+        <div class="team-card reveal">
+          <div class="team-image-wrapper">
+            <img src="CEO dipesh Pokhrel.jpg" alt="CEO Dipesh Pokhrel">
+          </div>
+          <div class="team-info">
+            <h3>Dipesh Pokhrel</h3>
+            <div class="team-role">CEO </div>
+            <p class="team-bio">Visionary leader with 1+ years of experience in digital innovation and business strategy</p>
+            <div class="team-socials">
+              <a href="https://www.facebook.com/dipesh.pokhrel.1694" class="team-social-link" title="Facebook">f</a>
+              <a href="#" class="team-social-link" title="Instagram">I</a>
+              <a href="#" class="team-social-link" title="LinkedIn">in</a>
+              <a href="#" class="team-social-link" title="Twitter">𝕏</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Team Member 2: CTO -->
+        <div class="team-card reveal">
+          <div class="team-image-wrapper">
+            <img src="CTO Parbin Bhattarai.png" alt="CTO Parbin Bhattarai">
+          </div>
+          <div class="team-info">
+            <h3>Parbin Bhattarai</h3>
+            <div class="team-role">CTO & Tech Lead</div>
+            <p class="team-bio">Technical innovator specializing in scalable architectures and cutting-edge web technologies</p>
+            <div class="team-socials">
+              <a href="#" class="team-social-link" title="Facebook">f</a>
+              <a href="#" class="team-social-link" title="Instagram">📷</a>
+              <a href="#" class="team-social-link" title="LinkedIn">in</a>
+              <a href="#" class="team-social-link" title="Twitter">𝕏</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Team Member 3: COO -->
+        <div class="team-card reveal">
+          <div class="team-image-wrapper">
+            <img src="COO Basanta Poudel.png" alt="COO Basanta Poudel">
+          </div>
+          <div class="team-info">
+            <h3>Basanta Poudel</h3>
+            <div class="team-role">COO & Operations Lead</div>
+            <p class="team-bio">Operations expert ensuring smooth execution of all projects and client satisfaction</p>
+            <div class="team-socials">
+              <a href="#" class="team-social-link" title="Facebook">f</a>
+              <a href="#" class="team-social-link" title="Instagram">📷</a>
+              <a href="#" class="team-social-link" title="LinkedIn">in</a>
+              <a href="#" class="team-social-link" title="Twitter">𝕏</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Team Member 4: CMO -->
+        <div class="team-card reveal">
+          <div class="team-image-wrapper">
+            <img src="CMO subash yadav.jpg" alt="CMO Subash Yadav">
+          </div>
+          <div class="team-info">
+            <h3>Subash Yadav</h3>
+            <div class="team-role">CMO & Creative Director</div>
+            <p class="team-bio">Creative visionary crafting compelling brand narratives and stunning visual identities</p>
+            <div class="team-socials">
+              <a href="#" class="team-social-link" title="Facebook">f</a>
+              <a href="#" class="team-social-link" title="Instagram">📷</a>
+              <a href="#" class="team-social-link" title="LinkedIn">in</a>
+              <a href="#" class="team-social-link" title="Twitter">𝕏</a>
+            </div>
+          </div>
+        </div>
+
+          <!-- Team Member 5: Backend Developer -->
+        <div class="team-card reveal">
+          <div class="team-image-wrapper">
+            <img src="Backend deveoper sushant poudel.jpeg" alt="Sushant Poudel" >
+          </div>
+          <div class="team-info">
+            <h3>Sushant Poudel</h3>
+            <div class="team-role">Mentor of Backend Development </div>
+            <p class="team-bio">Backend architect specializing in robust APIs and complex system design</p>
+            <div class="team-socials">
+              <a href="https://www.facebook.com/sushant.poudel.3150" class="team-social-link" title="Facebook">f</a>
+              <a href="https://www.instagram.com/su_shant.js/?__pwa=1#" class="team-social-link" title="Instagram">I</a>
+              <a href="https://www.linkedin.com/in/sushant-poudel58/" class="team-social-link" title="LinkedIn">in</a>
+              <a href="https://github.com/sushantpoudel58" class="team-social-link" title="GitHub">G</a>
+            </div>
+          </div>
+        </div>
+             <!-- Team Member 6: Frontend Mentor-->
+         <div class="team-card reveal">
+          <div class="team-image-wrapper">
+            <img src="deepak.jpg" alt="Frontend Mentor Deepak Pokhrel">
+          </div>
+          <div class="team-info">
+            <h3>Deepak Pokhrel</h3>
+            <div class="team-role">Frontend development Mentor </div>
+            <p class="team-bio">UI/UX specialist creating beautiful and intuitive digital experiences for users</p>
+            <div class="team-socials">
+              <a href="#" class="team-social-link" title="Facebook">f</a>
+              <a href="#" class="team-social-link" title="Instagram">📷</a>
+              <a href="#" class="team-social-link" title="LinkedIn">in</a>
+              <a href="#" class="team-social-link" title="Twitter">𝕏</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Team Member 7: video editor -->
+        <div class="team-card reveal">
+          <div class="team-image-wrapper">
+            <img src="anup.jpeg" alt="Anup Chapagai video editor">
+          </div>
+          <div class="team-info">
+            <h3>Anup Chapagai</h3>
+            <div class="team-role">video editor</div>
+            <p class="team-bio">specializing in high-impact reels and short-form videos.
+Turning raw clips into scroll-stopping content.</p>
+            <div class="team-socials">
+              <a href="#" class="team-social-link" title="Facebook">f</a>
+              <a href="#" class="team-social-link" title="Instagram">📷</a>
+              <a href="#" class="team-social-link" title="LinkedIn">in</a>
+              <a href="#" class="team-social-link" title="Twitter">𝕏</a>
+            </div>
+          </div>
+        </div>
+
+         <!-- Team Member 8: Frontend Developer -->
+        <div class="team-card reveal">
+          <div class="team-image-wrapper">
+            <img src="pratik.png" alt="Pratik Dhakal Frontend Developer">
+          </div>
+          <div class="team-info">
+            <h3>Pratik Dhakal</h3>
+            <div class="team-role">Frontend Developer,  video editor</div>
+            <p class="team-bio">UI/UX specialist creating beautiful and intuitive digital experiences for users.</p>
+            <div class="team-socials">
+              <a href="#" class="team-social-link" title="Facebook">f</a>
+              <a href="#" class="team-social-link" title="Instagram">📷</a>
+              <a href="#" class="team-social-link" title="LinkedIn">in</a>
+              <a href="#" class="team-social-link" title="Twitter">𝕏</a>
+            </div>
+          </div>
+        </div>
+
+         <!-- Team Member 9: QA -->
+        <div class="team-card reveal">
+          <div class="team-image-wrapper">
+            <img src="nikhil.jpg" alt="Nikhil Panday QA">
+          </div>
+          <div class="team-info">
+            <h3>Nikhil Panday </h3>
+            <div class="team-role">QA</div>
+            <p class="team-bio"> specializing in high-impact reels and short-form videos.
+Turning raw clips into scroll-stopping content.</p>
+            <div class="team-socials">
+              <a href="#" class="team-social-link" title="Facebook">f</a>
+              <a href="#" class="team-social-link" title="Instagram">📷</a>
+              <a href="#" class="team-social-link" title="LinkedIn">in</a>
+              <a href="#" class="team-social-link" title="Twitter">𝕏</a>
+            </div>
+          </div>
+        </div>
+
+         <!-- Team Member 10: content creator and writter -->
+        <div class="team-card reveal">
+          <div class="team-image-wrapper">
+            <img src="ayusha aryal.png" alt="Ayusha aryal content creator and writter">
+          </div>
+          <div class="team-info">
+            <h3>Ayusha aryal</h3>
+            <div class="team-role">content creator and writter</div>
+            <p class="team-bio">specializing in digital storytelling.
+Words that connect, content that converts..</p>
+            <div class="team-socials">
+              <a href="#" class="team-social-link" title="Facebook">f</a>
+              <a href="#" class="team-social-link" title="Instagram">📷</a>
+              <a href="#" class="team-social-link" title="LinkedIn">in</a>
+              <a href="#" class="team-social-link" title="Twitter">𝕏</a>
+            </div>
+          </div>
+        </div>
+
+         <!-- Team Member 7: Frontend Mentor-->
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== VALUES SECTION ============== -->
+  <section style="background: #f8f9f7;">
+    <div class="container">
+      <h2>Our Core Values</h2>
+      
+      <div class="team-grid" style="margin-top: var(--spacing-2xl);">
+        <div class="team-card" style="border-top: 4px solid #4CAF50;">
+          <div class="team-info">
+            <h3> Excellence</h3>
+            <p class="team-bio">We're committed to delivering the highest quality in every project, exceeding expectations consistently</p>
+          </div>
+        </div>
+        
+        <div class="team-card" style="border-top: 4px solid #4CAF50;">
+          <div class="team-info">
+            <h3> Collaboration</h3>
+            <p class="team-bio">We work closely with our clients and team to ensure their vision comes to life beautifully</p>
+          </div>
+        </div>
+        
+        <div class="team-card" style="border-top: 4px solid #4CAF50;">
+          <div class="team-info">
+            <h3> Innovation</h3>
+            <p class="team-bio">We embrace new technologies and creative solutions to solve complex problems effectively</p>
+          </div>
+        </div>
+        
+        <div class="team-card" style="border-top: 4px solid #4CAF50;">
+          <div class="team-info">
+            <h3>Reliability</h3>
+            <p class="team-bio">We deliver on time, every time, with transparent communication and accountability</p>
+          </div>
+        </div>
+        
+        <div class="team-card" style="border-top: 4px solid #4CAF50;">
+          <div class="team-info">
+            <h3>Growth</h3>
+            <p class="team-bio">We continuously learn, adapt, and improve to stay at the forefront of industry trends</p>
+          </div>
+        </div>
+        
+        <div class="team-card" style="border-top: 4px solid #4CAF50;">
+          <div class="team-info">
+            <h3> Impact</h3>
+            <p class="team-bio">We create solutions that make a meaningful difference in our clients' business success</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== CTA SECTION ============== -->
+  <section>
+    <div class="container">
+      <div style="background: linear-gradient(135deg, #4CAF50, #1B5E20); color: white; text-align: center; padding: var(--spacing-3xl) var(--spacing-lg); border-radius: 16px;" class="reveal">
+        <h2 style="color: white; margin-bottom: var(--spacing-lg);">Join Our Team</h2>
+        <p style="font-size: 1.1rem; margin-bottom: var(--spacing-2xl); opacity: 0.95;">We're always looking for talented individuals to join our growing team</p>
+        <a href="contact.html" style="background: white; color: #4CAF50; padding: 14px 40px; border-radius: 50px; font-weight: 600; display: inline-block; text-decoration: none;">Get In Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== FOOTER ============== -->
+  <footer>
+    <div class="container">
+      <div class="footer-section">
+        <h3>Rudhara Innovation</h3>
+        <p>We're a creative design and development studio crafting clean, impactful websites, apps, and identities for brands that care.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="portfolio.html">Our Work</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Services</h3>
+        <ul>
+          <li><a href="services.html">Website Development</a></li>
+          <li><a href="services.html">Graphics Designing</a></li>
+          <li><a href="services.html">Digital Marketing</a></li>
+          <li><a href="services.html">Video Editing</a></li>
+          <li><a href="services.html">SEO Services</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Contact Info</h3>
+        <ul>
+          <li><a href="tel:+919876543210">9847053906</a></li>
+          <li><a href="mailto:rudrainnovationventures@gmail.com">rudrainnovationventures@gmail.com</a></li>
+          <li>Butwal, Nepal</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 Rudhara Innovation. All rights reserved. | Designed with ❤️ by Rudhara Team</p>
+      <p><a href="https://wa.me/+9779847053906" style="text-decoration: none;">💬 Chat on WhatsApp</a></p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Scroll Reveal Animation
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+          }, index * 100);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+
+    revealElements.forEach(element => observer.observe(element));
+
+    // Sticky Navbar
+    const navbar = document.querySelector('.navbar');
+    let lastScrollTop = 0;
+    
+    window.addEventListener('scroll', () => {
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      if (scrollTop > 100) {
+        navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+      } else {
+        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.05)';
+      }
+      
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+  </script>
+</body>
+</html>

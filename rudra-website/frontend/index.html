@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rudhara Innovation - Transforming Ideas into Digital Reality. Design, develop, market and create exceptional digital experiences.">
+  <meta name="keywords" content="technology, innovation, digital transformation, web development, design, marketing">
+  <meta name="author" content="Rudhara Innovation">
+  <title>Rudhara Innovation - Design & Development Studio</title>
+  
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    * { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    
+    /* Sticky Navbar (box removed, compact) */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: transparent; /* remove box */
+      backdrop-filter: none;
+      box-shadow: none; /* remove shadow */
+      padding: 6px 0; /* compact height */
+    }
+
+    .navbar .container { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+
+    .navbar-logo img { width:50px; height:50px; object-fit:contain; }
+
+    .navbar-logo span {
+      font-size: 1rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #23a93b, #126112);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display:inline-block;
+      vertical-align:middle;
+    }
+
+    .nav-link {
+      position: relative;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 6px 6px; /* smaller hit area */
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-primary);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+    
+    /* Hero Section */
+
+    .hero-section {
+      position: relative;
+      min-height: 90vh;
+
+      
+
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-3xl) 0;
+    }
+
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      left: -8%;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(76, 175, 80, 0.06) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 10s ease-in-out infinite;
+      animation-delay: 2s;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(30px); }
+    }
+
+    /* Animated tech icons */
+    .tech-icons {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .tech-icon {
+      position: absolute;
+      font-size: 3rem;
+      opacity: 0.15;
+      animation: floatIcon 6s ease-in-out infinite;
+    }
+
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+      25% { transform: translateY(-30px) translateX(20px) rotate(10deg); }
+      50% { transform: translateY(-50px) translateX(-10px) rotate(20deg); }
+      75% { transform: translateY(-30px) translateX(-30px) rotate(-10deg); }
+    }
+
+    @keyframes floatIconAlt {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-40px) rotate(-20deg); }
+    }
+
+    .tech-icon:nth-child(1) { top: 10%; left: 5%; animation: floatIcon 8s ease-in-out infinite; }
+    .tech-icon:nth-child(2) { top: 20%; left: 15%; animation: floatIconAlt 7s ease-in-out infinite; animation-delay: 0.5s; }
+    .tech-icon:nth-child(3) { top: 60%; left: 10%; animation: floatIcon 9s ease-in-out infinite; animation-delay: 1s; }
+    .tech-icon:nth-child(4) { top: 15%; right: 8%; animation: floatIconAlt 7.5s ease-in-out infinite; animation-delay: 0.7s; }
+    .tech-icon:nth-child(5) { top: 50%; right: 5%; animation: floatIcon 8.5s ease-in-out infinite; animation-delay: 1.2s; }
+    .tech-icon:nth-child(6) { bottom: 15%; right: 12%; animation: floatIconAlt 6.5s ease-in-out infinite; animation-delay: 0.3s; }
+
+    .hero-inner {
+      width: 100%;
+      max-width: 1200px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--spacing-3xl);
+      align-items: center;
+      z-index: 1;
+      padding: 0 var(--spacing-lg);
+    }
+
+    .hero-left {
+      text-align: left;
+      padding-right: var(--spacing-lg);
+    }
+
+    .hero-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: left;
+      max-width: 720px;
+      padding: 0;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.25rem, 6.5vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.05;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, #0f3a5a 0%, #0b5b2b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: slideUp 0.8s ease-out;
+    }
+
+    .hero-content p {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-lg);
+      line-height: 1.8;
+      animation: slideUp 0.8s ease-out 0.2s both;
+    }
+
+    .hero-underline {
+      width: 80px;
+      height: 6px;
+      background: linear-gradient(90deg,#0b5b2b,#34c167);
+      border-radius: 6px;
+      margin: 12px 0 18px 0;
+    }
+
+    .hero-graphic svg { width: 100%; height: auto; display: block; }
+
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-left { padding: 0; }
+      .hero-content { text-align: center; }
+      .hero-right { margin-top: var(--spacing-lg); }
+    }
+    
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: var(--spacing-lg);
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: slideUp 0.8s ease-out 0.4s both;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #4CAF50, #45a049);
+      color: white;
+      padding: 14px 40px;
+      border-radius: 50px;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    }
+    
+    .btn-primary:hover {
+      box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+      transform: translateY(-4px);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: #4CAF50;
+      border: 2px solid #4CAF50;
+      padding: 12px 38px;
+      border-radius: 50px;
+      font-weight: 600;
+    }
+    
+    .btn-secondary:hover {
+      background: #4CAF50;
+      color: white;
+      transform: translateY(-4px);
+    }
+    
+    /* Section Styles */
+    section {
+      position: relative;
+      padding: var(--spacing-3xl) var(--spacing-lg);
+    }
+    
+    section h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: var(--spacing-xl);
+      font-weight: 800;
+      text-align: center;
+    }
+    
+    .section-subtitle {
+      text-align: center;
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto var(--spacing-2xl);
+      line-height: 1.7;
+    }
+    
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--spacing-2xl);
+    }
+    
+    .service-card {
+      background: white;
+      padding: var(--spacing-2xl);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #4CAF50, #45a049);
+      animation: slideRight 0.3s ease;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 12px 40px rgba(76, 175, 80, 0.15);
+    }
+    
+    @keyframes slideRight {
+      to { left: 100%; }
+    }
+    
+    .service-icon {
+      font-size: 3rem;
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .service-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: var(--spacing-md);
+      font-weight: 700;
+    }
+    
+    .service-card p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .service-link {
+      color: #4CAF50;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .service-link:hover {
+      gap: 12px;
+    }
+    
+    /* Why Choose Section */
+    .why-choose-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-2xl);
+    }
+    
+    .why-choose-card {
+      padding: var(--spacing-2xl);
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+    
+    .why-choose-card:hover {
+      box-shadow: 0 8px 30px rgba(76, 175, 80, 0.12);
+      transform: translateY(-8px);
+    }
+    
+    .why-choose-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: var(--spacing-md);
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+    
+    .why-choose-card p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    
+    /* Stats Section */
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-2xl);
+      margin-top: var(--spacing-2xl);
+    }
+    
+    .stat-card {
+      text-align: center;
+      padding: var(--spacing-2xl);
+    }
+    
+    .stat-number {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #4CAF50, #1B5E20);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .stat-label {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-top: var(--spacing-md);
+      font-weight: 600;
+    }
+    
+    /* Testimonials */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--spacing-2xl);
+      margin-top: var(--spacing-2xl);
+    }
+    
+    .testimonial {
+      background: white;
+      padding: var(--spacing-2xl);
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      border-left: 4px solid #4CAF50;
+    }
+    
+    .testimonial-text {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-lg);
+      line-height: 1.8;
+      font-style: italic;
+    }
+    
+    .testimonial-author {
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+    }
+    
+    .testimonial-role {
+      color: #f5f9f5;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #4CAF50, #1B5E20);
+      color: white;
+      text-align: center;
+      padding: var(--spacing-3xl) var(--spacing-lg);
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .cta-section h2 {
+      position: relative;
+      z-index: 1;
+      color: white;
+    }
+    
+    .cta-section p {
+      position: relative;
+      z-index: 1;
+      font-size: 1.2rem;
+      margin-bottom: var(--spacing-2xl);
+      opacity: 0.95;
+    }
+    
+    .cta-buttons {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      gap: var(--spacing-lg);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn-light-cta {
+      background: white;
+      color: #4CAF50;
+      font-weight: 600;
+    }
+    
+    .btn-light-cta:hover {
+      background: #f0f0f0;
+      transform: translateY(-4px);
+    }
+    
+    /* Partners Section */
+    .partners-section {
+      background: #f8f9f7;
+    }
+    
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-2xl);
+    }
+    
+    .partner-logo {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      border-radius: 8px;
+      padding: var(--spacing-md);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .partner-logo:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(76, 175, 80, 0.1);
+    }
+    
+    .partner-logo img {
+      max-width: 100%;
+      max-height: 60px;
+      object-fit: contain;
+    }
+    
+    /* Scroll Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    /* Dark Mode Support */
+    :root.dark-mode .service-card,
+    :root.dark-mode .why-choose-card,
+    :root.dark-mode .testimonial,
+    :root.dark-mode .partner-logo {
+      background: var(--card-bg);
+    }
+    
+    :root.dark-mode .hero-section {
+      background: linear-gradient(135deg, #0d1b0f 0%, #132d16 100%);
+    }
+    
+    :root.dark-mode .partners-section {
+      background: var(--card-bg);
+    }
+    
+    @media (max-width: 768px) {
+      .hero-buttons {
+        flex-direction: column;
+      }
+      .hero-buttons .btn-primary,
+      .hero-buttons .btn-secondary {
+        width: 100%;
+      }
+      .cta-buttons {
+        flex-direction: column;
+      }
+      .cta-buttons .btn-light-cta {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body class="light-mode">
+  <!-- ============== NAVBAR ============== -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-logo">
+        <img src="logo.png" alt="Rudhara Logo" style="width: 80px; height: 80px;" onerror="this.style.display='none'">
+        
+      </div>
+      
+      <ul class="nav-menu">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#work" class="nav-link">Work</a></li>
+        <li><a href="team.html" class="nav-link">Team</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+        
+      </ul>
+      
+      <div class="navbar-toggle" id="navbar-toggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+  </nav>
+
+  <!-- ============== HERO SECTION ============== -->
+  <section class="hero-section" id="home">
+    <div class="tech-icons">
+      <div class="tech-icon">⚛️</div>
+      <div class="tech-icon">📱</div>
+      <div class="tech-icon">💻</div>
+      <div class="tech-icon">🎨</div>
+      <div class="tech-icon">✨</div>
+      <div class="tech-icon">🚀</div>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-content">
+          <h1>Your idea our innovation<br>One Solution at a Time</h1>
+          <div class="hero-underline" aria-hidden="true"></div>
+          <p>We offer top-notch web development, graphic designing, and digital marketing services.</p>
+
+          <div class="hero-buttons">
+            <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+            <a href="#services" class="btn btn-secondary">Our Services</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- hero-right graphic removed per request (background image and inline SVG removed) -->
+    </div>
+  </section>
+
+  <!-- ============== SERVICES SECTION ============== -->
+  
+  <!-- ============== ABOUT SECTION ============== -->
+  <section id="about">
+    <div class="container">
+      <h2>About Us</h2>
+      <p class="section-subtitle">We combine creativity, technology, and strategy to build digital products that grow businesses.</p>
+
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-icon"><img src="" alt=""></div>
+          <h3>Who We Are</h3>
+          <p>Rudhara Innovation is a design and development studio focused on crafting delightful, performant, and accessible digital experiences for businesses of all sizes.</p>
+          <a href="about.html" class="service-link">Read More →</a>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon"></div>
+          <h3>What We Do</h3>
+          <p>From strategy and design to engineering and growth, we partner with clients to deliver measurable impact through technology.</p>
+          <a href="about.html" class="service-link">Read More →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <h2>Our Services</h2>
+      <p class="section-subtitle">What We Can Help You With!</p>
+
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-icon">🏗️</div>
+          <h3>Website Development</h3>
+          <p>Developing ideas into websites that excel responsively across all devices with modern technologies and best practices.</p>
+          <a href="services.html" class="service-link">View Details →</a>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon">🎨</div>
+          <h3>Graphics Designing</h3>
+          <p>Visuals that illustrate what your brand is all about. From logos to marketing materials that make an impact.</p>
+          <a href="services.html" class="service-link">View Details →</a>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon">📱</div>
+          <h3>Digital Marketing</h3>
+          <p>Grow your brand. Reach the right audience with strategic digital marketing solutions tailored to your goals.</p>
+          <a href="services.html" class="service-link">View Details →</a>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon">🎬</div>
+          <h3>Video Editing & Post Production</h3>
+          <p>Smooth post-production for exceptional results. Transform raw footage into compelling video content.</p>
+          <a href="services.html" class="service-link">View Details →</a>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon">🔍</div>
+          <h3>Search Engine Optimization</h3>
+          <p>Become visible to the audience you value. Strategic SEO to rank higher and drive organic traffic.</p>
+          <a href="services.html" class="service-link">View Details →</a>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon">💡</div>
+          <h3>Digital Strategy</h3>
+          <p>Strategic planning and consulting to align your digital presence with your business objectives.</p>
+          <a href="services.html" class="service-link">View Details →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== WHY CHOOSE US ============== -->
+  <section style="background: #f8f9f7;">
+    <div class="container">
+      <h2>Why Choose Rudhara?</h2>
+      <p class="section-subtitle">We don't just build — we craft meaningful experiences and elevate your digital presence.</p>
+
+      <div class="why-choose-grid">
+        <div class="why-choose-card reveal">
+          <h3>Creative Expertise</h3>
+          <p>Our team blends creativity with smart planning to develop designs and digital content that really gets noticed and drives engagement.</p>
+        </div>
+
+        <div class="why-choose-card reveal">
+          <h3>Solutions Made for You</h3>
+          <p>We don't use the standard solution for everyone. We make each project just for your brand, keeping your goals in mind.</p>
+        </div>
+
+        <div class="why-choose-card reveal">
+          <h3>Everything You Need in One Place</h3>
+          <p>We do it all—design, building, marketing, and content. It's all here, so operations flow seamlessly.</p>
+        </div>
+
+        <div class="why-choose-card reveal">
+          <h3>Always on Time</h3>
+          <p>We value your time. Expect timely deliveries without compromising on quality or cutting corners.</p>
+        </div>
+
+        <div class="why-choose-card reveal">
+          <h3>Support That's There for You</h3>
+          <p>Our relationship doesn't end after delivery. We offer continued support and improvements when you need them.</p>
+        </div>
+
+        <div class="why-choose-card reveal">
+          <h3>Transparent Communication</h3>
+          <p>Clear communication throughout the project journey. You'll always know where things stand and what's happening next.</p>
+        </div>
+      </div>
+
+      <div class="stats-container">
+        <div class="stat-card reveal">
+          <div class="stat-number">25+</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-number">7+</div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-number">11+</div>
+          <div class="stat-label">Expert Team Members</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-number">1+</div>
+          <div class="stat-label">Years of Experience</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== TESTIMONIALS ============== -->
+  <section>
+    <div class="container">
+      <h2>What People Say</h2>
+      <p class="section-subtitle">Real feedback from clients, customers, and our team</p>
+
+      <div class="testimonials-grid">
+        <div class="testimonial reveal">
+          <div class="testimonial-text">"Rudhara transformed our vision into reality. Their attention to detail and creative approach exceeded all our expectations. Highly recommended!"</div>
+          <div class="testimonial-author">Rajesh Kumar</div>
+          <div class="testimonial-role">CEO, TechCorp Solutions</div>
+        </div>
+
+        <div class="testimonial reveal">
+          <div class="testimonial-text">"Working with Rudhara was a game-changer. They understood our brand vision and delivered solutions that truly resonated with our audience."</div>
+          <div class="testimonial-author">Priya Sharma</div>
+          <div class="testimonial-role">Founder, Digital Ventures</div>
+        </div>
+
+        <div class="testimonial reveal">
+          <div class="testimonial-text">"The team's expertise and professionalism are outstanding. From conception to execution, they handled everything seamlessly and delivered on time."</div>
+          <div class="testimonial-author">Amit Patel</div>
+          <div class="testimonial-role">VP Marketing, Global Enterprises</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== WORK / PORTFOLIO ============== -->
+  <section id="work">
+    <div class="container">
+      <h2>Our Work</h2>
+      <p class="section-subtitle">Selected projects and case studies showcasing our capabilities.</p>
+
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-icon">🌐</div>
+          <h3>Modern Corporate Site</h3>
+          <p>A responsive, SEO-friendly corporate website built with performance and conversions in mind.</p>
+          <a href="portfolio.html" class="service-link">View Case Study →</a>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon">📱</div>
+          <h3>Mobile App Landing</h3>
+          <p>A high-converting landing experience for an iOS & Android app with clear CTAs and analytics integration.</p>
+          <a href="portfolio.html" class="service-link">View Case Study →</a>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon">🛒</div>
+          <h3>E-commerce Platform</h3>
+          <p>Scalable e-commerce build with secure checkout, inventory sync, and custom integrations.</p>
+          <a href="portfolio.html" class="service-link">View Case Study →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== PARTNERS SECTION ============== -->
+  <section class="partners-section">
+    <div class="container">
+      <h2>We've Worked With</h2>
+      <p class="section-subtitle">Trusted by leading brands and organizations</p>
+
+      <div class="partners-grid">
+
+  <div class="partner-logo reveal">
+    <img src="1.png" alt="Partner 1" onerror="this.style.display='none'">
+  </div>
+
+  <div class="partner-logo reveal">
+    <img src="2.jpg" alt="Partner 2" onerror="this.style.display='none'">
+  </div>
+
+  <div class="partner-logo reveal">
+    <img src="3.png" alt="Partner 3" onerror="this.style.display='none'">
+  </div>
+
+  <div class="partner-logo reveal">
+    <img src="4.png" alt="Partner 4" onerror="this.style.display='none'">
+  </div>
+
+  <div class="partner-logo reveal">
+    <img src="5.png" alt="Partner 5" onerror="this.style.display='none'">
+  </div>
+
+  <div class="partner-logo reveal">
+    <img src="6.png" alt="Partner 6" onerror="this.style.display='none'">
+  </div>
+
+  <div class="partner-logo reveal">
+    <img src="7.png" alt="Partner 7" onerror="this.style.display='none'">
+  </div>
+
+  <div class="partner-logo reveal">
+    <img src="8.png" alt="Partner 8" onerror="this.style.display='none'">
+  </div>
+
+  <div class="partner-logo reveal">
+    <img src="9.png" alt="Partner 9" onerror="this.style.display='none'">
+  </div>
+
+  <div class="partner-logo reveal">
+    <img src="10.png" alt="Partner 10" onerror="this.style.display='none'">
+  </div>
+
+  <div class="partner-logo reveal">
+    <img src="11.png" alt="Partner 11" onerror="this.style.display='none'">
+  </div>
+
+</div>
+
+  </section>
+
+  <!-- ============== PARTNERS SECTION ============== -->
+  <section class="partners-section">
+    <div class="container">
+      <h2>Our portfolio</h2>
+      <p class="section-subtitle">our portfolio is a testament to bold ideas, smart strategies, and flawless execution. From concept to completion, we craft digital experiences that help brands grow and stand out.</p>
+
+      <div class="partners-grid">
+         <div class="partner-logo reveal">
+          <a href="https://nep-stay.vercel.app/"><img src="nepstay.png" alt="Partner Logo" onerror="this.style.display='none'"></a>
+        </div>
+        <div class="partner-logo reveal">
+          <a href="https://purcmium.vercel.app/"><img src="purcmium.png" alt="Partner Logo" onerror="this.style.display='none'"></a>
+        </div>
+        <div class="partner-logo reveal">
+          <a href="https://bhattarai-kitchenware.vercel.app/"><img src="bhattari.png" alt="Partner Logo" onerror="this.style.display='none'"></a>
+        </div>
+        <div class="partner-logo reveal">
+          <a href="https://merolink.it.com/"><img src="mero link.png" alt="Partner Logo" onerror="this.style.display='none'"></a>
+        </div>
+        <div class="partner-logo reveal">
+          <a href="https://probeen007.github.io/Store-nepal/"><img src="store nepal.png" alt="Partner Logo" onerror="this.style.display='none'"></a>
+        </div>
+        <div class="partner-logo reveal">
+          <a href="https://hamro-palo.vercel.app/"><img src="hamaro.png" alt="Partner Logo" onerror="this.style.display='none'"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== CTA SECTION ============== -->
+  <section>
+    <div class="container">
+      <div class="cta-section">
+        <h2>Ready to Bring Your Idea to Life?</h2>
+        <p>Ready to start your next big thing? Whether it's a website, app, or brand — Rudhara is here to make it happen.</p>
+        <p style="margin-bottom: var(--spacing-2xl); opacity: 0.9; font-size: 1rem;">Let's create something extraordinary together. We're just a message away.</p>
+        <div class="cta-buttons">
+          <a href="contact.html" class="btn btn-light-cta">Build Together</a>
+          <a href="contact.html" class="btn btn-light-cta">Request Call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== FOOTER ============== -->
+  <footer>
+    <div class="container">
+      <div class="footer-section">
+        <h3>Rudhara Innovation</h3>
+        <p>We're a creative design and development studio crafting clean, impactful websites, apps, and identities for brands that care.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#work">Our Work</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="team.html">Team</a></li>
+          
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Services</h3>
+        <ul>
+          <li><a href="services.html">Website Development</a></li>
+          <li><a href="services.html">Graphics Designing</a></li>
+          <li><a href="services.html">Digital Marketing</a></li>
+          <li><a href="services.html">Video Editing</a></li>
+          <li><a href="services.html">SEO Services</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Contact Info</h3>
+        <ul>
+          <li><a href="tel:+919876543210">9847053906</a></li>
+          <li><a href="mailto:rudrainnovationventures@gmail.com">rudrainnovationventures@gmail.com</a></li>
+          <li>Butwal Nepal </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 Rudhara Innovation. All rights reserved. | Designed with ❤️ by Rudhara Team</p>
+      <p><a href="https://wa.me/+9779847053906" style="text-decoration: none;">💬 Chat on WhatsApp</a></p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Smooth Scroll Navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Navbar Active Link
+    document.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (pageYOffset >= sectionTop - 200) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').slice(1) === current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Scroll Reveal Animation
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+
+    revealElements.forEach(element => observer.observe(element));
+
+    // Sticky Navbar Animation
+    let lastScrollTop = 0;
+    const navbar = document.querySelector('.navbar');
+    
+    window.addEventListener('scroll', () => {
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      if (scrollTop > 100) {
+        navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+      } else {
+        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.05)';
+      }
+      
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+  </script>
+</body>
+</html>

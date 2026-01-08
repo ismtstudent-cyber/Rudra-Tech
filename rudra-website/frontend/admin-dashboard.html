@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Admin Dashboard - Rudra Innovation">
+  <title>Admin Dashboard - Rudra Innovation</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    .admin-container {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      min-height: 100vh;
+      background: var(--bg-primary);
+    }
+    
+    .admin-sidebar {
+      background: var(--card-bg);
+      border-right: 2px solid var(--border-color);
+      padding: var(--spacing-lg);
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+      width: 250px;
+    }
+    
+    .admin-content {
+      margin-left: 250px;
+      padding: var(--spacing-lg);
+    }
+    
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing-2xl);
+      background: var(--card-bg);
+      padding: var(--spacing-lg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+    }
+    
+    .admin-nav {
+      list-style: none;
+    }
+    
+    .admin-nav li {
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .admin-nav-link {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: transparent;
+      color: var(--text-primary);
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      transition: all var(--transition-fast);
+      font-weight: 500;
+      border-left: 3px solid transparent;
+    }
+    
+    .admin-nav-link:hover {
+      background: var(--color-primary);
+      color: #fff;
+      border-left-color: var(--color-primary);
+    }
+    
+    .admin-nav-link.active {
+      background: var(--color-primary);
+      color: #fff;
+      border-left-color: var(--color-primary);
+    }
+    
+    .admin-section {
+      display: none;
+    }
+    
+    .admin-section.active {
+      display: block;
+    }
+    
+    .table-responsive {
+      overflow-x: auto;
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      color: var(--text-primary);
+    }
+    
+    th {
+      background: var(--color-primary);
+      color: #fff;
+      padding: var(--spacing-md);
+      text-align: left;
+      font-weight: 600;
+    }
+    
+    td {
+      padding: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    tr:hover {
+      background: rgba(76, 175, 80, 0.05);
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: var(--spacing-sm);
+    }
+    
+    .btn-sm {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.85rem;
+    }
+    
+    .btn-danger {
+      background: #f44336;
+      border-color: #f44336;
+    }
+    
+    .btn-danger:hover {
+      background: #d32f2f;
+      border-color: #d32f2f;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-2xl);
+    }
+    
+    .stat-item {
+      background: var(--card-bg);
+      padding: var(--spacing-2xl);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--color-primary);
+    }
+    
+    .stat-label {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-top: var(--spacing-sm);
+    }
+    
+    @media (max-width: 1024px) {
+      .admin-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .admin-sidebar {
+        width: 100%;
+        position: relative;
+        height: auto;
+        border-bottom: 2px solid var(--border-color);
+        border-right: none;
+      }
+      
+      .admin-content {
+        margin-left: 0;
+      }
+      
+      .admin-nav {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: var(--spacing-sm);
+      }
+    }
+  </style>
+</head>
+<body class="light-mode">
+  <div class="admin-container">
+    <!-- Sidebar -->
+    <div class="admin-sidebar">
+      <div style="margin-bottom: var(--spacing-2xl);">
+        <h3 style="color: var(--color-primary); margin-bottom: var(--spacing-sm);">Admin Panel</h3>
+        <p style="font-size: 0.9rem; color: var(--text-secondary);">Rudra Innovation</p>
+      </div>
+      
+      <ul class="admin-nav">
+        <li><button class="admin-nav-link active" onclick="showSection('dashboard')">📊 Dashboard</button></li>
+        <li><button class="admin-nav-link" onclick="showSection('team')">👥 Team Members</button></li>
+        <li><button class="admin-nav-link" onclick="showSection('services')">⚙️ Services</button></li>
+        <li><button class="admin-nav-link" onclick="showSection('portfolio')">🎨 Portfolio</button></li>
+        <li><button class="admin-nav-link" onclick="showSection('contact')">💬 Messages</button></li>
+        <li><button class="admin-nav-link" onclick="logout()">🚪 Logout</button></li>
+      </ul>
+      
+      <div style="margin-top: var(--spacing-2xl); padding-top: var(--spacing-lg); border-top: 1px solid var(--border-color);">
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: var(--spacing-sm);">UI Mode</p>
+        <div style="display: flex; gap: 4px;">
+          <button class="mode-btn active" data-mode="light-mode" title="Light">☀️</button>
+          <button class="mode-btn" data-mode="dark-mode" title="Dark">🌙</button>
+          <button class="mode-btn" data-mode="glow-mode" title="Glow">✨</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="admin-content">
+      <!-- Header -->
+      <div class="admin-header">
+        <div>
+          <h1>Welcome, <span id="adminName">Admin</span></h1>
+          <p style="color: var(--text-secondary); margin: 0;">Manage your website content</p>
+        </div>
+        <div style="text-align: right;">
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">Logged in as</p>
+          <p style="font-weight: 600;" id="adminEmail">admin@rudra.tech</p>
+        </div>
+      </div>
+      
+      <!-- Dashboard Section -->
+      <div id="dashboard" class="admin-section active">
+        <h2>Dashboard</h2>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number" id="statTeam">0</div>
+            <div class="stat-label">Team Members</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" id="statServices">0</div>
+            <div class="stat-label">Services</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" id="statProjects">0</div>
+            <div class="stat-label">Projects</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" id="statMessages">0</div>
+            <div class="stat-label">Contact Messages</div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h3>Quick Actions</h3>
+          <p style="margin-bottom: var(--spacing-lg);">Use the sidebar to manage your content sections.</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-lg);">
+            <button onclick="showSection('team')" class="btn">Manage Team</button>
+            <button onclick="showSection('services')" class="btn">Manage Services</button>
+            <button onclick="showSection('portfolio')" class="btn">Manage Portfolio</button>
+            <button onclick="showSection('contact')" class="btn">View Messages</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Team Members Section -->
+      <div id="team" class="admin-section">
+        <h2>Team Members</h2>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Designation</th>
+                <th>Email</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="teamTable">
+              <tr><td colspan="4" style="text-align: center;">No team members</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <!-- Services Section -->
+      <div id="services" class="admin-section">
+        <h2>Services</h2>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="servicesTable">
+              <tr><td colspan="3" style="text-align: center;">No services</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <!-- Portfolio Section -->
+      <div id="portfolio" class="admin-section">
+        <h2>Portfolio Projects</h2>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Client</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="portfolioTable">
+              <tr><td colspan="4" style="text-align: center;">No projects</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <!-- Contact Messages Section -->
+      <div id="contact" class="admin-section">
+        <h2>Contact Messages</h2>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="contactTable">
+              <tr><td colspan="5" style="text-align: center;">No messages</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

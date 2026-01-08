@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio - Rudra Innovation Projects and Case Studies">
+  <title>Portfolio - Rudra Innovation & Media Tech Ventures</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body class="light-mode">
+  <!-- ============== NAVBAR ============== -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-logo">
+        <img src="../public/images/logo.svg" alt="Rudra Logo" style="width: 40px; height: 40px;" onerror="this.style.display='none'">
+        <span>Rudra Innovation</span>
+      </div>
+      
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="portfolio.html" class="nav-link active">Portfolio</a></li>
+        <li><a href="team.html" class="nav-link">Team</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+        
+      </ul>
+      
+      <div class="mode-switcher">
+        <button class="mode-btn active" data-mode="light-mode" title="Light Mode">☀️</button>
+        <button class="mode-btn" data-mode="dark-mode" title="Dark Mode">🌙</button>
+        <button class="mode-btn" data-mode="glow-mode" title="Glow Mode">✨</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============== PAGE HEADER ============== -->
+  <section style="background: var(--card-bg); padding: var(--spacing-2xl) var(--spacing-lg); text-align: center;">
+    <div class="container">
+      <h1>Our Portfolio</h1>
+      <p style="font-size: 1.2rem; color: var(--text-secondary); margin-top: var(--spacing-md);">
+        Showcasing Our Latest Projects and Case Studies
+      </p>
+    </div>
+  </section>
+
+  <!-- ============== PORTFOLIO GRID ============== -->
+  <section>
+    <div class="container">
+      <div class="grid" id="portfolioContainer">
+        <div class="card" style="text-align: center;">
+          <p>Loading projects...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== CASE STUDY HIGHLIGHT ============== -->
+  <section style="background: var(--card-bg);">
+    <div class="container">
+      <h2>Featured Case Study</h2>
+      
+      <div class="grid-2">
+        <div class="scroll-reveal">
+          <img src="../public/images/case-study.jpg" alt="Case Study" style="border-radius: var(--radius-lg);" onerror="this.style.display='none'">
+        </div>
+        
+        <div class="scroll-reveal">
+          <h3>Transforming Digital Experience for Enterprise Client</h3>
+          <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: var(--spacing-lg);">
+            How we helped a leading enterprise transform their digital infrastructure and improve customer engagement by 300%.
+          </p>
+          
+          <div style="background: var(--bg-primary); padding: var(--spacing-lg); border-radius: var(--radius-lg); margin-bottom: var(--spacing-lg);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--spacing-md);">Project Overview</h4>
+            <ul style="list-style: none;">
+              <li style="margin-bottom: var(--spacing-sm);"><strong>Client:</strong> Fortune 500 Company</li>
+              <li style="margin-bottom: var(--spacing-sm);"><strong>Duration:</strong> 12 months</li>
+              <li style="margin-bottom: var(--spacing-sm);"><strong>Team Size:</strong> 25+ professionals</li>
+              <li><strong>Technologies:</strong> React, Node.js, AWS, MongoDB</li>
+            </ul>
+          </div>
+          
+          <div style="background: var(--bg-primary); padding: var(--spacing-lg); border-radius: var(--radius-lg); margin-bottom: var(--spacing-lg);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--spacing-md);">Results Achieved</h4>
+            <ul style="list-style: none;">
+              <li style="margin-bottom: var(--spacing-sm);">✓ 300% increase in customer engagement</li>
+              <li style="margin-bottom: var(--spacing-sm);">✓ 50% reduction in operational costs</li>
+              <li style="margin-bottom: var(--spacing-sm);">✓ 99.9% system uptime achieved</li>
+              <li>✓ $10M revenue impact in first year</li>
+            </ul>
+          </div>
+          
+          <a href="contact.html" class="btn">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== PROJECT CATEGORIES ============== -->
+  <section>
+    <div class="container">
+      <h2>Project Categories</h2>
+      
+      <div class="grid-3">
+        <div class="card scroll-reveal" style="text-align: center;">
+          <div style="font-size: 2.5rem; margin-bottom: var(--spacing-md);">🌐</div>
+          <h4>Web Development</h4>
+          <p>Custom web applications, e-commerce platforms, and digital solutions for enterprises and startups.</p>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">50+ Projects</p>
+        </div>
+        
+        <div class="card scroll-reveal" style="text-align: center;">
+          <div style="font-size: 2.5rem; margin-bottom: var(--spacing-md);">📱</div>
+          <h4>Mobile Apps</h4>
+          <p>Native iOS and Android apps, cross-platform solutions, and progressive web applications.</p>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">35+ Projects</p>
+        </div>
+        
+        <div class="card scroll-reveal" style="text-align: center;">
+          <div style="font-size: 2.5rem; margin-bottom: var(--spacing-md);">📊</div>
+          <h4>Data Analytics</h4>
+          <p>Business intelligence platforms, data warehousing, and advanced analytics solutions.</p>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">30+ Projects</p>
+        </div>
+        
+        <div class="card scroll-reveal" style="text-align: center;">
+          <div style="font-size: 2.5rem; margin-bottom: var(--spacing-md);">☁️</div>
+          <h4>Cloud Solutions</h4>
+          <p>AWS and Azure migrations, cloud infrastructure setup, and DevOps implementations.</p>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">25+ Projects</p>
+        </div>
+        
+        <div class="card scroll-reveal" style="text-align: center;">
+          <div style="font-size: 2.5rem; margin-bottom: var(--spacing-md);">🤖</div>
+          <h4>AI & ML Solutions</h4>
+          <p>Machine learning models, AI-powered applications, and intelligent automation systems.</p>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">20+ Projects</p>
+        </div>
+        
+        <div class="card scroll-reveal" style="text-align: center;">
+          <div style="font-size: 2.5rem; margin-bottom: var(--spacing-md);">🎨</div>
+          <h4>Design & UX</h4>
+          <p>UI/UX design, brand identity, and user experience optimization across all platforms.</p>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">40+ Projects</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== CTA ============== -->
+  <section class="container">
+    <div class="cta-section scroll-reveal">
+      <h2>Ready to Bring Your Project to Life?</h2>
+      <p>Let's discuss your vision and create something amazing together.</p>
+      <a href="/contact" class="btn" style="margin-top: var(--spacing-lg);">Start Your Project</a>
+    </div>
+  </section>
+
+  <!-- ============== FOOTER ============== -->
+  <footer>
+    <div class="container">
+      <div class="footer-section">
+        <h3>Rudra Innovation</h3>
+        <p>Leading the digital transformation journey with innovative technology solutions and expert guidance.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/portfolio">Portfolio</a></li>
+          <li><a href="/team">Team</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Services</h3>
+        <ul>
+          <li><a href="/services">Web Development</a></li>
+          <li><a href="/services">Mobile Applications</a></li>
+          <li><a href="/services">Digital Marketing</a></li>
+          <li><a href="/services">Cloud Solutions</a></li>
+          <li><a href="/services">AI & ML</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Contact Info</h3>
+        <ul>
+          <li>Email: <a href="mailto:info@rudra.tech">info@rudra.tech</a></li>
+          <li>Phone: <a href="tel:+919876543210">+91 98765 43210</a></li>
+          <li>Address: Tech Park, Mumbai, India</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Rudra Innovation & Media Tech Ventures. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

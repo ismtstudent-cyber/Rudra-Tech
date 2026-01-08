@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Rudhara Innovation - Get in touch with our team for your next digital project">
+  <title>Contact Us - Rudhara Innovation</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+    }
+    
+    .navbar-logo span {
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #4CAF50, #1B5E20);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .nav-link {
+      position: relative;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-primary);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+    
+    .page-hero {
+      background: linear-gradient(135deg, #f8f9f7 0%, #f0f4ed 100%);
+      padding: var(--spacing-3xl) var(--spacing-lg);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(76, 175, 80, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    
+    .page-hero h1 {
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #1a1a1a 0%, #4CAF50 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      z-index: 1;
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .page-hero p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    
+    section {
+      padding: var(--spacing-3xl) var(--spacing-lg);
+    }
+    
+    section h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: var(--spacing-xl);
+      font-weight: 800;
+      text-align: center;
+    }
+    
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-3xl);
+      margin-top: var(--spacing-2xl);
+    }
+    
+    .contact-form {
+      background: white;
+      padding: var(--spacing-2xl);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    .form-group {
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #4CAF50;
+      box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+    }
+    
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #4CAF50, #45a049);
+      color: white;
+      padding: 14px 40px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s ease;
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+    }
+    
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-2xl);
+    }
+    
+    .info-box {
+      background: white;
+      padding: var(--spacing-2xl);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border-left: 4px solid #4CAF50;
+    }
+    
+    .info-box h3 {
+      font-size: 1.3rem;
+      margin-bottom: var(--spacing-md);
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+    
+    .info-box p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .info-box a {
+      color: #4CAF50;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .info-box a:hover {
+      text-decoration: underline;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: var(--spacing-lg);
+      flex-wrap: wrap;
+    }
+    
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: #f0f0f0;
+      border-radius: 50%;
+      color: #4CAF50;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      background: #4CAF50;
+      color: white;
+      transform: translateY(-4px);
+    }
+    
+    .faq-section {
+      background: #f8f9f7;
+    }
+    
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: var(--spacing-2xl);
+      margin-top: var(--spacing-2xl);
+    }
+    
+    .faq-item {
+      background: white;
+      padding: var(--spacing-2xl);
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+    
+    .faq-item h3 {
+      font-size: 1.1rem;
+      margin-bottom: var(--spacing-md);
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+    
+    .faq-item p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    @media (max-width: 768px) {
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="light-mode">
+  <!-- ============== NAVBAR ============== -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-logo">
+        <img src="logo.png" alt="Rudhara Logo" style="width: 80px; height: 80px;" onerror="this.style.display='none'">
+      
+      </div>
+      
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="portfolio.html" class="nav-link">Work</a></li>
+        <li><a href="team.html" class="nav-link">Team</a></li>
+        <li><a href="contact.html" class="nav-link active">Contact</a></li>
+      </ul>
+      
+      <div class="mode-switcher">
+        
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============== PAGE HERO ============== -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>Get in Touch</h1>
+      <p>Have a project in mind? Let's discuss how we can help bring your ideas to life.</p>
+    </div>
+  </section>
+
+  <!-- ============== CONTACT SECTION ============== -->
+  <section>
+    <div class="container">
+      <div class="contact-container">
+        <!-- Contact Form -->
+        <form class="contact-form reveal" id="contactForm">
+          <h2 style="text-align: left; font-size: 1.8rem; margin-bottom: var(--spacing-lg);">Send us a Message</h2>
+          
+          <div class="form-group">
+            <label for="name">Name *</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+          
+          <div class="form-group">
+            <label for="subject">Subject *</label>
+            <input type="text" id="subject" name="subject" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+
+        <!-- Contact Information -->
+        <div class="contact-info">
+          <div class="info-box reveal">
+            <h3>📞 Phone</h3>
+            <p>Reach out to us directly for immediate assistance</p>
+            <a href="tel:9847053906">9847053906</a>
+            <br>
+            <a href="tel:9840042546">9840042546</a>
+          </div>
+          
+          <div class="info-box reveal">
+            <h3>📧 Email</h3>
+            <p>Drop us an email anytime and we'll get back within 24 hours</p>
+            <a href="mailto:rudrainnovationventures@gmail.com">rudrainnovationventures@gmail.com</a>
+            <br>
+          </div>
+          
+          <div class="info-box reveal">
+            <h3> Address</h3>
+            <p>Visit our office in the heart of Butwal</p>
+            <p>Butwal, Nepal</p>
+            <a href="https://maps.google.com" target="_blank">View on Map →</a>
+          </div>
+          
+          <div class="info-box reveal">
+            <h3>🔗 Follow Us</h3>
+            <p>Connect with us on social media</p>
+            <div class="social-links">
+              <a href="https://www.facebook.com/rudrainnovation" title="Facebook">f</a>
+              <a href="https://www.instagram.com/rudrainnovationtech?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" title="Instagram">📷</a>
+              <a href="#" title="LinkedIn">in</a>
+              <a href="#" title="Twitter">𝕏</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== FAQ SECTION ============== -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Frequently Asked Questions</h2>
+      
+      <div class="faq-grid">
+        <div class="faq-item reveal">
+          <h3>How long does a typical project take?</h3>
+          <p>Project timelines vary based on scope and complexity. A simple website might take 2-4 weeks, while larger projects could take 8-12 weeks or more. We'll provide a detailed timeline after the discovery phase.</p>
+        </div>
+        
+        <div class="faq-item reveal">
+          <h3>What is your pricing structure?</h3>
+          <p>We offer flexible pricing options including fixed-price projects, time-and-materials, and retainer agreements. Each project is unique, so we provide custom quotes based on your specific requirements.</p>
+        </div>
+        
+        <div class="faq-item reveal">
+          <h3>Do you provide post-launch support?</h3>
+          <p>Absolutely! We offer comprehensive post-launch support including maintenance, updates, optimization, and 24/7 technical assistance. We're committed to your long-term success.</p>
+        </div>
+        
+        <div class="faq-item reveal">
+          <h3>Can you work with existing systems?</h3>
+          <p>Yes, we can integrate with and enhance existing systems, migrate from legacy platforms, or work with specific technologies you're already using. We're experienced with diverse tech stacks.</p>
+        </div>
+        
+        <div class="faq-item reveal">
+          <h3>How do you ensure project communication?</h3>
+          <p>We maintain regular communication through scheduled meetings, detailed documentation, and a dedicated project dashboard. You'll always have visibility into project progress and milestones.</p>
+        </div>
+        
+        <div class="faq-item reveal">
+          <h3>What happens if I'm not satisfied?</h3>
+          <p>Client satisfaction is our priority. If you're not satisfied with the results, we'll work with you to make revisions and adjustments until you're completely happy with the deliverables.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== CTA SECTION ============== -->
+  <section>
+    <div class="container">
+      <div style="background: linear-gradient(135deg, #4CAF50, #1B5E20); color: white; text-align: center; padding: var(--spacing-3xl) var(--spacing-lg); border-radius: 16px;" class="reveal">
+        <h2 style="color: white; margin-bottom: var(--spacing-lg);">Ready to Get Started?</h2>
+        <p style="font-size: 1.1rem; margin-bottom: var(--spacing-2xl); opacity: 0.95;">Let's collaborate and create something extraordinary together</p>
+        <a href="#contactForm" style="background: white; color: #4CAF50; padding: 14px 40px; border-radius: 50px; font-weight: 600; display: inline-block; text-decoration: none;">Send us a Message</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== FOOTER ============== -->
+  <footer>
+    <div class="container">
+      <div class="footer-section">
+        <h3>Rudhara Innovation</h3>
+        <p>We're a creative design and development studio crafting clean, impactful websites, apps, and identities for brands that care.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="portfolio.html">Our Work</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Services</h3>
+        <ul>
+          <li><a href="services.html">Website Development</a></li>
+          <li><a href="services.html">Graphics Designing</a></li>
+          <li><a href="services.html">Digital Marketing</a></li>
+          <li><a href="services.html">Video Editing</a></li>
+          <li><a href="services.html">SEO Services</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Contact Info</h3>
+        <ul>
+          <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+          <li><a href="mailto:hello@rudhara.tech">hello@rudhara.tech</a></li>
+          <li>Mumbai, India</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 Rudhara Innovation. All rights reserved. | Designed with ❤️ by Rudhara Team</p>
+      <p><a href="https://wa.me/919876543210" style="text-decoration: none;">💬 Chat on WhatsApp</a></p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Form Submission
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+      
+      if (name && email && subject && message) {
+        alert('Thank you for your message! We will get back to you soon.');
+        this.reset();
+      } else {
+        alert('Please fill in all required fields.');
+      }
+    });
+
+    // Scroll Reveal Animation
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+
+    revealElements.forEach(element => observer.observe(element));
+
+    // Sticky Navbar
+    const navbar = document.querySelector('.navbar');
+    let lastScrollTop = 0;
+    
+    window.addEventListener('scroll', () => {
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      if (scrollTop > 100) {
+        navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+      } else {
+        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.05)';
+      }
+      
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+  </script>
+</body>
+</html>
